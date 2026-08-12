@@ -1,0 +1,20 @@
+{
+  "method": {
+    "kicker": "04 / 我的研究循环",
+    "title": "把“不懂”，变成下一步行动。",
+    "items": [
+      { "step": "READ", "title": "读懂", "body": "把论文拆成问题、假设、结构与损失，而不是停在结论。" },
+      { "step": "BUILD", "title": "复现", "body": "让方法在代码、数据与环境里真正运行，暴露隐含条件。" },
+      { "step": "DEBUG", "title": "追因", "body": "沿张量、指标和可视化定位偏差，拒绝“似乎有效”。" },
+      { "step": "RETHINK", "title": "重构", "body": "带着失败证据重新组织问题，形成下一轮可验证判断。" }
+    ]
+  },
+  "now": {
+    "kicker": "05 / 此刻坐标",
+    "title": "让车辆，看见时间留下的信息。",
+    "description": "我目前聚焦自动驾驶感知中的单目 3D Occupancy 与场景补全，探索如何把光流所表达的运动线索，与历史帧的时序特征结合，改善模型对遮挡区域和动态场景的空间理解。",
+    "topics": ["Monocular 3D", "Temporal Fusion", "Scene Completion", "Autonomous Driving"],
+    "questionLabel": "NEXT QUESTION",
+    "questionLines": ["当单帧视觉不再足够，", "历史能否成为理解未来的线索？"]
+  }
+}

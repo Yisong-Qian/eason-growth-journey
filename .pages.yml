@@ -1,0 +1,475 @@
+media:
+  - name: images
+    label: 网站图片
+    input: public/uploads
+    output: /uploads
+    rename: safe
+    categories: [image]
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "新增内容：{path}"
+      update: "更新网站内容：{path}"
+      delete: "删除内容：{path}"
+      rename: "重命名内容：{oldPath} → {newPath}"
+
+content:
+  - name: website
+    label: 网站内容
+    type: group
+    items:
+      - name: site
+        label: 首页与页脚
+        type: file
+        path: src/content/site.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: meta
+            label: 浏览器与搜索信息
+            type: object
+            fields:
+              - name: title
+                label: 网站标题
+                type: string
+                required: true
+              - name: description
+                label: 网站简介
+                type: text
+                required: true
+          - name: brand
+            label: 左上角品牌名
+            type: string
+            required: true
+          - name: navigation
+            label: 顶部导航
+            type: object
+            required: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - name: label
+                label: 显示文字
+                type: string
+                required: true
+              - name: anchor
+                label: 页面锚点
+                type: string
+                required: true
+                readonly: true
+          - name: hero
+            label: 首屏内容
+            type: object
+            required: true
+            fields:
+              - name: englishName
+                label: 英文名
+                type: string
+                required: true
+              - name: chineseName
+                label: 中文名
+                type: string
+                required: true
+              - name: title
+                label: 主标题
+                type: string
+                required: true
+              - name: subtitle
+                label: 副标题
+                type: string
+                required: true
+              - name: actionLabel
+                label: 主按钮文字
+                type: string
+                required: true
+              - name: route
+                label: 城市轨迹
+                type: string
+                required: true
+                list: true
+              - name: topics
+                label: 首屏关键词
+                type: string
+                required: true
+                list: true
+              - name: quoteLines
+                label: 首屏引语（每项一行）
+                type: string
+                required: true
+                list: true
+              - name: scrollLabel
+                label: 向下浏览提示
+                type: string
+                required: true
+          - name: footer
+            label: 页脚
+            type: object
+            required: true
+            fields:
+              - name: mark
+                label: 小标题
+                type: string
+                required: true
+              - name: title
+                label: 主标题
+                type: string
+                required: true
+              - name: name
+                label: 姓名
+                type: string
+                required: true
+              - name: route
+                label: 城市轨迹
+                type: string
+                required: true
+              - name: backLabel
+                label: 返回顶部文字
+                type: string
+                required: true
+              - name: adminLabel
+                label: 后台入口文字
+                type: string
+                required: true
+
+      - name: journey
+        label: 成长时间线与转折
+        type: file
+        path: src/content/journey.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: journey
+            label: 成长时间线
+            type: object
+            required: true
+            fields:
+              - name: kicker
+                label: 章节标记
+                type: string
+                required: true
+              - name: titleLines
+                label: 标题（每项一行）
+                type: string
+                required: true
+                list: true
+              - name: description
+                label: 章节简介
+                type: text
+                required: true
+              - name: chapters
+                label: 城市经历
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{index} · {city}"
+                fields:
+                  - name: index
+                    label: 序号
+                    type: string
+                    required: true
+                  - name: city
+                    label: 城市
+                    type: string
+                    required: true
+                  - name: english
+                    label: 英文城市名
+                    type: string
+                    required: true
+                  - name: role
+                    label: 阶段定位
+                    type: string
+                    required: true
+                  - name: title
+                    label: 经历标题
+                    type: string
+                    required: true
+                  - name: body
+                    label: 经历正文
+                    type: text
+                    required: true
+                  - name: signal
+                    label: 英文标签
+                    type: string
+                    required: true
+          - name: turning
+            label: 转折段落
+            type: object
+            required: true
+            fields:
+              - name: kicker
+                label: 章节标记
+                type: string
+                required: true
+              - name: titleLines
+                label: 标题（每项一行）
+                type: string
+                required: true
+                list: true
+              - name: statementLead
+                label: 重点句前半段
+                type: text
+                required: true
+              - name: statementStrong
+                label: 重点加粗句
+                type: string
+                required: true
+              - name: description
+                label: 说明正文
+                type: text
+                required: true
+
+      - name: projects
+        label: 项目经历与图片
+        type: file
+        path: src/content/projects.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: section
+            label: 项目区标题
+            type: object
+            required: true
+            fields:
+              - name: kicker
+                label: 章节标记
+                type: string
+                required: true
+              - name: title
+                label: 标题
+                type: string
+                required: true
+              - name: description
+                label: 简介
+                type: text
+                required: true
+          - name: items
+            label: 项目卡片
+            type: object
+            required: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{number} · {title}"
+            fields:
+              - name: number
+                label: 编号
+                type: string
+                required: true
+              - name: meta
+                label: 英文分类
+                type: string
+                required: true
+              - name: title
+                label: 项目标题
+                type: string
+                required: true
+              - name: tags
+                label: 技术关键词
+                type: string
+                required: true
+                list: true
+              - name: body
+                label: 项目正文
+                type: text
+                required: true
+              - name: insight
+                label: 成长总结
+                type: text
+                required: true
+              - name: image
+                label: 项目图片（可选）
+                type: image
+                description: 上传后会显示在项目卡片顶部；留空则保持纯文字样式。
+                options:
+                  media: images
+                  extensions: [jpg, jpeg, png, webp, avif]
+                  rename: safe
+              - name: imageAlt
+                label: 图片说明（无障碍文本）
+                type: string
+
+      - name: research
+        label: 研究方法与当前方向
+        type: file
+        path: src/content/research.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: method
+            label: 研究循环
+            type: object
+            required: true
+            fields:
+              - name: kicker
+                label: 章节标记
+                type: string
+                required: true
+              - name: title
+                label: 标题
+                type: string
+                required: true
+              - name: items
+                label: 研究步骤
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{step} · {title}"
+                fields:
+                  - name: step
+                    label: 英文步骤
+                    type: string
+                    required: true
+                  - name: title
+                    label: 中文标题
+                    type: string
+                    required: true
+                  - name: body
+                    label: 说明
+                    type: text
+                    required: true
+          - name: now
+            label: 当前研究方向
+            type: object
+            required: true
+            fields:
+              - name: kicker
+                label: 章节标记
+                type: string
+                required: true
+              - name: title
+                label: 标题
+                type: string
+                required: true
+              - name: description
+                label: 正文
+                type: text
+                required: true
+              - name: topics
+                label: 研究关键词
+                type: string
+                required: true
+                list: true
+              - name: questionLabel
+                label: 问题英文标签
+                type: string
+                required: true
+              - name: questionLines
+                label: 研究问题（每项一行）
+                type: string
+                required: true
+                list: true
+
+      - name: globe
+        label: 地球与地点（高级）
+        type: file
+        path: src/content/globe.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - name: earthTexture
+            label: 地球纹理路径
+            type: string
+            required: true
+            description: 高级设置，除非准备了标准世界地图纹理，否则建议保持默认。
+          - name: previewImage
+            label: 地球预览图路径
+            type: string
+            required: true
+            description: 高级设置，建议保持默认。
+          - name: accessibilityLabel
+            label: 地球无障碍说明
+            type: text
+            required: true
+          - name: fallbackMessage
+            label: 轻量模式提示
+            type: string
+            required: true
+          - name: loadingMessage
+            label: 加载提示
+            type: string
+            required: true
+          - name: controlEyebrow
+            label: 控制区英文标题
+            type: string
+            required: true
+          - name: controlCaption
+            label: 控制区中文标题
+            type: string
+            required: true
+          - name: stops
+            label: 主轨迹地点
+            type: object
+            required: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{city}"
+            fields:
+              - name: city
+                label: 中文名称
+                type: string
+                required: true
+              - name: english
+                label: 英文名称
+                type: string
+                required: true
+              - name: lat
+                label: 纬度
+                type: number
+                required: true
+                options: { min: -90, max: 90 }
+              - name: lon
+                label: 经度
+                type: number
+                required: true
+                options: { min: -180, max: 180 }
+          - name: travelPoints
+            label: 独立旅途坐标
+            type: object
+            required: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{city}"
+            fields:
+              - name: city
+                label: 中文名称
+                type: string
+                required: true
+              - name: english
+                label: 英文名称
+                type: string
+                required: true
+              - name: lat
+                label: 纬度
+                type: number
+                required: true
+                options: { min: -90, max: 90 }
+              - name: lon
+                label: 经度
+                type: number
+                required: true
+                options: { min: -180, max: 180 }
+              - name: labelDx
+                label: 标签水平偏移
+                type: number
+                required: true
+              - name: labelDy
+                label: 标签垂直偏移
+                type: number
+                required: true

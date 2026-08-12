@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { contentAssetUrl } from "../content/assets";
+import globeContent from "../content/globe.json";
 
 type Stop = {
   city: string;
@@ -15,54 +17,8 @@ type TravelPoint = Stop & {
   labelDy: number;
 };
 
-const STOPS: Stop[] = [
-  { city: "杭州", english: "HANGZHOU", lat: 30.2741, lon: 120.1551 },
-  { city: "汉诺威", english: "HANNOVER", lat: 52.3759, lon: 9.732 },
-  { city: "慕尼黑", english: "MUNICH", lat: 48.1351, lon: 11.582 },
-];
-
-const TRAVEL_POINTS: TravelPoint[] = [
-  {
-    city: "冰岛",
-    english: "ICELAND",
-    lat: 64.9631,
-    lon: -19.0208,
-    labelDx: 10,
-    labelDy: -10,
-  },
-  {
-    city: "巴塞罗那",
-    english: "BARCELONA",
-    lat: 41.3874,
-    lon: 2.1686,
-    labelDx: -118,
-    labelDy: 16,
-  },
-  {
-    city: "南法",
-    english: "SOUTH FRANCE",
-    lat: 43.7102,
-    lon: 7.262,
-    labelDx: 12,
-    labelDy: -23,
-  },
-  {
-    city: "特内里费",
-    english: "TENERIFE",
-    lat: 28.2916,
-    lon: -16.6291,
-    labelDx: 12,
-    labelDy: 7,
-  },
-  {
-    city: "马略卡",
-    english: "MALLORCA",
-    lat: 39.6953,
-    lon: 3.0176,
-    labelDx: 13,
-    labelDy: 25,
-  },
-];
+const STOPS: Stop[] = globeContent.stops;
+const TRAVEL_POINTS: TravelPoint[] = globeContent.travelPoints;
 
 const GLOBE_RADIUS = 2.42;
 
@@ -159,7 +115,7 @@ export default function JourneyGlobe() {
       const fallbackMessage = document.createElement("p");
       fallback.className = "globe-webgl-fallback";
       fallback.setAttribute("role", "status");
-      fallbackMessage.textContent = "当前浏览器暂以轻量地球显示";
+      fallbackMessage.textContent = globeContent.fallbackMessage;
       fallback.append(fallbackMessage);
       mount.appendChild(fallback);
       return () => fallback.remove();
@@ -217,7 +173,7 @@ export default function JourneyGlobe() {
     globe.add(clouds);
 
     new THREE.TextureLoader().load(
-      `${import.meta.env.BASE_URL}earth-color.webp`,
+      contentAssetUrl(globeContent.earthTexture),
       (texture) => {
         if (disposed) {
           texture.dispose();
@@ -715,14 +671,14 @@ export default function JourneyGlobe() {
         className={`journey-globe${textureReady ? " is-ready" : ""}`}
         ref={interactiveRef}
         role="img"
-        aria-label="可交互的真实三维地球，显示大洲轮廓、国家边界，从杭州到汉诺威再到慕尼黑的人生轨迹，以及冰岛、巴塞罗那、南法、特内里费和马略卡五个独立旅途坐标。独立坐标之间没有连线。可拖拽旋转，使用滚轮或双指缩放，也可使用方向键和加减键操作。"
+        aria-label={globeContent.accessibilityLabel}
         tabIndex={0}
       >
         <div className="globe-poster" aria-hidden="true">
           {/* The file is already a 51 KB WebP; direct loading avoids an image-proxy round trip. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${import.meta.env.BASE_URL}earth-preview.webp`}
+            src={contentAssetUrl(globeContent.previewImage)}
             alt=""
             width="720"
             height="720"
@@ -762,8 +718,8 @@ export default function JourneyGlobe() {
 
       <div className="globe-controls" aria-label="聚焦人生轨迹地点">
         <p>
-          <span>TRAJECTORY / TRAVEL POINTS</span>
-          主轨迹 · 独立旅途坐标
+          <span>{globeContent.controlEyebrow}</span>
+          {globeContent.controlCaption}
         </p>
         <div aria-label="聚焦城市">
           {STOPS.map((stop, index) => (

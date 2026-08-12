@@ -1,6 +1,8 @@
 "use client";
 
 import { lazy, Suspense, useEffect, useState } from "react";
+import { contentAssetUrl } from "../content/assets";
+import globeContent from "../content/globe.json";
 
 const JourneyGlobe = lazy(() => import("./JourneyGlobe"));
 
@@ -20,7 +22,7 @@ function GlobePlaceholder() {
           {/* The file is already a 51 KB WebP; direct loading avoids an image-proxy round trip. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${import.meta.env.BASE_URL}earth-preview.webp`}
+            src={contentAssetUrl(globeContent.previewImage)}
             alt=""
             width="720"
             height="720"
@@ -29,20 +31,20 @@ function GlobePlaceholder() {
           />
         </div>
         <div className="globe-status" role="status">
-          正在启用交互地球
+          {globeContent.loadingMessage}
         </div>
       </div>
 
       <div className="globe-controls globe-controls--loading" aria-hidden="true">
         <p>
-          <span>TRAJECTORY / TRAVEL POINTS</span>
-          主轨迹 · 独立旅途坐标
+          <span>{globeContent.controlEyebrow}</span>
+          {globeContent.controlCaption}
         </p>
         <div>
-          {["杭州", "汉诺威", "慕尼黑"].map((city, index) => (
-            <button key={city} type="button" disabled>
+          {globeContent.stops.map((stop, index) => (
+            <button key={stop.city} type="button" disabled>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              {city}
+              {stop.city}
             </button>
           ))}
         </div>

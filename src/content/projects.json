@@ -1,0 +1,39 @@
+{
+  "section": {
+    "kicker": "03 / 探索现场",
+    "title": "成长，发生在问题最具体的地方。",
+    "description": "三类项目，三种尺度：系统、感知与现场。它们共同教会我把复杂问题拆开，也把零散模块重新连成整体。"
+  },
+  "items": [
+    {
+      "number": "A",
+      "meta": "MOBILE ROBOTICS",
+      "title": "让机器人自己找到路",
+      "tags": ["ROS2", "Nav2", "SLAM", "MPPI"],
+      "body": "从零搭建移动机器人导航系统，打通建图、定位、全局规划与局部控制链路；比较 Dijkstra、A* 与 Theta*，理解“找到路径”与“走好路径”之间的系统差异。",
+      "insight": "成长：从调用模块，到理解模块之间如何互相制约。",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "number": "B",
+      "meta": "3D PERCEPTION",
+      "title": "让看不见的空间，被模型理解",
+      "tags": ["3D SSC", "Optical Flow", "Temporal", "VLM"],
+      "body": "围绕单目 3D 场景补全与 Occupancy 展开研究，将光流运动信息与历史帧时序特征结合，增强模型对遮挡区域和动态场景的理解。",
+      "insight": "成长：从读懂论文，到复现、调试并提出自己的组合路径。",
+      "image": "",
+      "imageAlt": ""
+    },
+    {
+      "number": "C",
+      "meta": "FIELD ENGINEERING",
+      "title": "在真实故障里学习负责",
+      "tags": ["CAN", "Diagnosis", "Testing", "Support"],
+      "body": "参与大众充电站电气故障诊断与 CAN 分析，也在逆变器维护、故障检测和报告中接触真实工程约束。现场不会奖励漂亮假设，只会反馈系统是否可靠。",
+      "insight": "成长：从完成任务，到为诊断结论和工程闭环负责。",
+      "image": "",
+      "imageAlt": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "钱一颂｜经纬之间",
+    "description": "钱一颂的个人成长轨迹：从杭州到汉诺威与慕尼黑，从自动化工程走向智能驾驶感知。"
+  },
+  "brand": "经纬之间",
+  "navigation": [
+    { "label": "起点", "anchor": "home" },
+    { "label": "转折", "anchor": "turning-point" },
+    { "label": "探索", "anchor": "exploration" },
+    { "label": "此刻", "anchor": "now" }
+  ],
+  "hero": {
+    "englishName": "Eason",
+    "chineseName": "钱一颂",
+    "title": "经纬之间",
+    "subtitle": "从杭州到德国，从自动化到智能驾驶",
+    "actionLabel": "沿时间线出发",
+    "route": ["杭州", "汉诺威", "慕尼黑"],
+    "topics": ["ROS2", "SLAM", "3D Occupancy"],
+    "quoteLines": ["人生的意义，", "不是按图抵达，", "而是在未知中", "绘出自己的地图。"],
+    "scrollLabel": "SCROLL TO EXPLORE"
+  },
+  "footer": {
+    "mark": "经纬之间",
+    "title": "下一坐标，仍在路上。",
+    "name": "钱一颂 · Eason",
+    "route": "杭州 → 汉诺威 → 慕尼黑",
+    "backLabel": "回到起点 ↑",
+    "adminLabel": "内容后台 ↗"
+  }
+}
