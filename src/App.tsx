@@ -6,6 +6,13 @@ import projectsContent from "./content/projects.json";
 import researchContent from "./content/research.json";
 import siteContent from "./content/site.json";
 
+type ProjectItem = (typeof projectsContent.items)[number] & {
+  image?: string;
+  imageAlt?: string;
+};
+
+const projectItems: ProjectItem[] = projectsContent.items;
+
 function Lines({ lines }: { lines: string[] }) {
   return lines.map((line, index) => (
     <Fragment key={`${line}-${index}`}>
@@ -136,7 +143,7 @@ export default function Home() {
         </div>
 
         <div className="project-grid">
-          {projectsContent.items.map((project) => (
+          {projectItems.map((project) => (
             <article className={`project-card${project.image ? " has-image" : ""}`} key={project.number}>
               {project.image && (
                 <img className="project-image" src={contentAssetUrl(project.image)} alt={project.imageAlt || project.title} />
