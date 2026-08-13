@@ -9,31 +9,41 @@
       "number": "A",
       "meta": "MOBILE ROBOTICS",
       "title": "让机器人自己找到路",
-      "tags": ["ROS2", "Nav2", "SLAM", "MPPI"],
-      "body": "从零搭建移动机器人导航系统，打通建图、定位、全局规划与局部控制链路；比较 Dijkstra、A* 与 Theta*，理解“找到路径”与“走好路径”之间的系统差异。",
-      "insight": "成长：从调用模块，到理解模块之间如何互相制约。",
-      "image": "",
-      "imageAlt": ""
+      "tags": [
+        "ROS2",
+        "Nav2",
+        "SLAM",
+        "Gazebo"
+      ],
+      "body": "根据机器人实际硬件参数配置 URDF 模型，使 Gazebo 中的仿真机器人与真实平台保持一致。在团队自主导航项目中，我主要负责未知环境下的全局路径规划与局部避障：基于 2D LiDAR 感知与建图结果构建 Costmap，对 Dijkstra、A*、Theta* 等全局规划算法进行部署与对比，并进一步研究 DWA、RPP、MPPI 等局部控制器在动态避障、轨迹跟踪与实时响应上的表现。通过这一过程，我逐渐理解了自主导航中从环境建模、全局规划到局部控制之间完整的系统链路。",
+      "insight": "成长：通过这一过程，我逐渐理解了自主导航中从环境建模、全局规划到局部控制之间完整的系统链路。",
+      "image": "/uploads/20260813155415281122.png"
     },
     {
       "number": "B",
       "meta": "3D PERCEPTION",
       "title": "让看不见的空间，被模型理解",
-      "tags": ["3D SSC", "Optical Flow", "Temporal", "VLM"],
+      "tags": [
+        "3D SSC",
+        "Optical Flow",
+        "Temporal",
+        "VLM"
+      ],
       "body": "围绕单目 3D 场景补全与 Occupancy 展开研究，将光流运动信息与历史帧时序特征结合，增强模型对遮挡区域和动态场景的理解。",
-      "insight": "成长：从读懂论文，到复现、调试并提出自己的组合路径。",
-      "image": "",
-      "imageAlt": ""
+      "insight": "成长：从读懂论文，到复现、调试并提出自己的组合路径。"
     },
     {
       "number": "C",
       "meta": "FIELD ENGINEERING",
       "title": "在真实故障里学习负责",
-      "tags": ["CAN", "Diagnosis", "Testing", "Support"],
+      "tags": [
+        "CAN",
+        "Diagnosis",
+        "Testing",
+        "Support"
+      ],
       "body": "参与大众充电站电气故障诊断与 CAN 分析，也在逆变器维护、故障检测和报告中接触真实工程约束。现场不会奖励漂亮假设，只会反馈系统是否可靠。",
-      "insight": "成长：从完成任务，到为诊断结论和工程闭环负责。",
-      "image": "",
-      "imageAlt": ""
+      "insight": "成长：从完成任务，到为诊断结论和工程闭环负责。"
     }
   ]
 }
