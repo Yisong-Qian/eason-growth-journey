@@ -21,12 +21,12 @@
     {
       "number": "B",
       "meta": "3D Occupancy Prediction",
-      "title": "让模型尝试理解看不见的空间",
+      "title": "让模型理解看不见的空间",
       "tags": [
         "3D SSC",
         "Optical Flow",
         "Temporal",
-        "VLM"
+        "Occupancy"
       ],
       "body": "围绕单目 3D 场景补全与 Occupancy 展开研究，将光流运动信息与历史帧时序特征结合，增强模型对遮挡区域和动态场景的理解。",
       "insight": "成长：从读懂论文，到复现、调试并提出自己的组合路径。"
