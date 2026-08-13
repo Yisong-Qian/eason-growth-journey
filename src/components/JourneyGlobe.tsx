@@ -15,10 +15,11 @@ type Stop = {
 type TravelPoint = Stop & {
   labelDx: number;
   labelDy: number;
+  labelSide?: "left" | "right";
 };
 
 const STOPS: Stop[] = globeContent.stops;
-const TRAVEL_POINTS: TravelPoint[] = globeContent.travelPoints;
+const TRAVEL_POINTS = globeContent.travelPoints as TravelPoint[];
 
 const GLOBE_RADIUS = 2.42;
 
@@ -695,7 +696,7 @@ export default function JourneyGlobe() {
           ))}
           {TRAVEL_POINTS.map((point, index) => (
             <span
-              className="globe-label globe-label--travel"
+              className={`globe-label globe-label--travel${point.labelSide === "left" ? " is-left" : ""}`}
               key={point.city}
               ref={(element) => {
                 travelLabelRefs.current[index] = element;

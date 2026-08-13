@@ -13,7 +13,7 @@
   ],
   "travelPoints": [
     { "city": "冰岛", "english": "ICELAND", "lat": 64.9631, "lon": -19.0208, "labelDx": 10, "labelDy": -10 },
-    { "city": "巴塞罗那", "english": "BARCELONA", "lat": 41.3874, "lon": 2.1686, "labelDx": -118, "labelDy": 16 },
+    { "city": "巴塞罗那", "english": "BARCELONA", "lat": 41.3874, "lon": 2.1686, "labelDx": -12, "labelDy": 0, "labelSide": "left" },
     { "city": "南法", "english": "SOUTH FRANCE", "lat": 43.7102, "lon": 7.262, "labelDx": 12, "labelDy": -23 },
     { "city": "特内里费", "english": "TENERIFE", "lat": 28.2916, "lon": -16.6291, "labelDx": 12, "labelDy": 7 },
     { "city": "马略卡", "english": "MALLORCA", "lat": 39.6953, "lon": 3.0176, "labelDx": 13, "labelDy": 25 }

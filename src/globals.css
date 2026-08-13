@@ -536,6 +536,19 @@ a {
   transform: translate(0, -50%);
 }
 
+.globe-label--travel.is-left {
+  padding-right: 21px;
+  padding-left: 0;
+  align-items: flex-end;
+  text-align: right;
+  transform: translate(-100%, -50%);
+}
+
+.globe-label--travel.is-left i {
+  right: 0;
+  left: auto;
+}
+
 .globe-label--travel i {
   width: 7px;
   height: 7px;
@@ -1643,6 +1656,11 @@ a {
   .globe-label--travel {
     min-width: 72px;
     padding-left: 17px;
+  }
+
+  .globe-label--travel.is-left {
+    padding-right: 17px;
+    padding-left: 0;
   }
 
   .globe-label--travel strong {
