@@ -480,11 +480,6 @@ export default function JourneyGlobe() {
       }
     };
 
-    const onWheel = (event: WheelEvent) => {
-      adjustZoom(THREE.MathUtils.clamp(event.deltaY, -120, 120) * 0.008);
-      event.preventDefault();
-    };
-
     const onKeyDown = (event: KeyboardEvent) => {
       const amount = 0.09;
       if (event.key === "ArrowLeft") globe.rotation.y -= amount;
@@ -502,7 +497,6 @@ export default function JourneyGlobe() {
     renderer.domElement.addEventListener("pointermove", onPointerMove);
     renderer.domElement.addEventListener("pointerup", onPointerUp);
     renderer.domElement.addEventListener("pointercancel", onPointerUp);
-    renderer.domElement.addEventListener("wheel", onWheel, { passive: false });
     interactive.addEventListener("keydown", onKeyDown);
 
     const resize = () => {
@@ -639,7 +633,6 @@ export default function JourneyGlobe() {
       renderer.domElement.removeEventListener("pointermove", onPointerMove);
       renderer.domElement.removeEventListener("pointerup", onPointerUp);
       renderer.domElement.removeEventListener("pointercancel", onPointerUp);
-      renderer.domElement.removeEventListener("wheel", onWheel);
       interactive.removeEventListener("keydown", onKeyDown);
       renderer.dispose();
       scene.traverse((object) => {
