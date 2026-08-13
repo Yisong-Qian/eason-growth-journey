@@ -8,7 +8,7 @@
     {
       "number": "A",
       "meta": "MOBILE ROBOTICS",
-      "title": "让机器人自己找到路",
+      "title": "让机器人自己找到最合适的路",
       "tags": [
         "ROS2",
         "Nav2",
