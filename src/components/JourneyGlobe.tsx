@@ -300,14 +300,14 @@ export default function JourneyGlobe() {
       marker.position.copy(position);
 
       const core = new THREE.Mesh(
-        new THREE.SphereGeometry(0.075, 24, 24),
+        new THREE.SphereGeometry(0.0375, 24, 24),
         new THREE.MeshBasicMaterial({ color: 0xffbd65 }),
       );
       core.scale.setScalar(index === 0 ? 1.12 : 1);
       marker.add(core);
 
       const halo = new THREE.Mesh(
-        new THREE.SphereGeometry(0.112, 20, 20),
+        new THREE.SphereGeometry(0.056, 20, 20),
         new THREE.MeshBasicMaterial({
           color: 0xff9f3e,
           transparent: true,
@@ -319,7 +319,7 @@ export default function JourneyGlobe() {
       marker.add(halo);
 
       const ring = new THREE.Mesh(
-        new THREE.TorusGeometry(0.128, 0.008, 8, 48),
+        new THREE.TorusGeometry(0.064, 0.004, 8, 48),
         new THREE.MeshBasicMaterial({
           color: 0xffb454,
           transparent: true,
@@ -341,13 +341,13 @@ export default function JourneyGlobe() {
       marker.position.copy(position);
 
       const core = new THREE.Mesh(
-        new THREE.SphereGeometry(0.052, 20, 20),
+        new THREE.SphereGeometry(0.026, 20, 20),
         new THREE.MeshBasicMaterial({ color: 0x73d8ff }),
       );
       marker.add(core);
 
       const halo = new THREE.Mesh(
-        new THREE.SphereGeometry(0.084, 18, 18),
+        new THREE.SphereGeometry(0.042, 18, 18),
         new THREE.MeshBasicMaterial({
           color: 0x3d8bff,
           transparent: true,
@@ -359,7 +359,7 @@ export default function JourneyGlobe() {
       marker.add(halo);
 
       const ring = new THREE.Mesh(
-        new THREE.TorusGeometry(0.092, 0.006, 8, 40),
+        new THREE.TorusGeometry(0.046, 0.003, 8, 40),
         new THREE.MeshBasicMaterial({
           color: 0x73d8ff,
           transparent: true,
