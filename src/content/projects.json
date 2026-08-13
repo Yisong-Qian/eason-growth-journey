@@ -20,7 +20,7 @@
     },
     {
       "number": "B",
-      "meta": "3D PERCEPTION",
+      "meta": "3D Occupancy Prediction",
       "title": "让看不见的空间，被模型理解",
       "tags": [
         "3D SSC",
