@@ -1008,6 +1008,8 @@ a {
 
 .project-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 540px;
   padding: 32px clamp(24px, 2.4vw, 38px);
   border: 1px solid rgba(169, 190, 220, 0.16);
@@ -1113,20 +1115,17 @@ a {
 }
 
 .project-body {
-  margin: 28px 0 0;
+  margin: 28px 0 36px;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.9;
 }
 
 .project-insight {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  right: clamp(24px, 2.4vw, 38px);
-  bottom: 30px;
-  left: clamp(24px, 2.4vw, 38px);
-  margin: 0;
-  padding-top: 18px;
+  margin: auto 0 0;
+  padding-top: 20px;
   border-top: 1px solid rgba(169, 190, 220, 0.14);
   color: #d6deea;
   font-size: 13px;
