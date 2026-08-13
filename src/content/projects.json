@@ -33,16 +33,16 @@
     },
     {
       "number": "C",
-      "meta": "FIELD ENGINEERING",
-      "title": "在真实故障里学习负责",
+      "meta": "AI Native · Vibe Coding · Codex · Workflow",
+      "title": "把想法，快速变成可以运行的系统",
       "tags": [
-        "CAN",
-        "Diagnosis",
-        "Testing",
-        "Support"
+        "AI Native",
+        "Vibe Coding",
+        "Codex",
+        "Workflow"
       ],
-      "body": "参与大众充电站电气故障诊断与 CAN 分析，也在逆变器维护、故障检测和报告中接触真实工程约束。现场不会奖励漂亮假设，只会反馈系统是否可靠。",
-      "insight": "成长：从完成任务，到为诊断结论和工程闭环负责。"
+      "body": "在海外 GTM 实习中，我开始将 AI 真正融入日常工程流程：不只是用它辅助写代码，而是让 AI 参与需求拆解、数据处理、规则设计、代码生成、调试与迭代，逐渐形成一套 AI Native 的工作方式。\n\n基于 Codex，我通过 Vibe Coding 的方式快速搭建 AI-assisted Workflow，将原本需要大量人工完成的数据采集、清洗、结构化分析与报告生成连接成自动化流程。从 Prompt、JSON Schema 到数据处理脚本和报告模板，我将不同环节模块化，并通过配置适配不同产品与区域研究任务。",
+      "insight": "在这个过程中，我更关注的不是“生成了多少代码”，而是如何把一个模糊的想法逐步拆解成清晰的问题、数据结构与执行流程，再借助 AI 快速完成原型、验证并工程化落地。"
     }
   ]
 }
