@@ -14,14 +14,19 @@
         "body": "让方法在代码、数据与环境里真正运行，暴露隐含条件。"
       },
       {
-        "step": "DEBUG",
-        "title": "追因",
+        "step": "BUILD",
+        "title": "模块构建",
         "body": "沿张量、指标和可视化定位偏差，拒绝“似乎有效”。"
       },
       {
-        "step": "RETHINK",
-        "title": "重构",
+        "step": "VALIDATE",
+        "title": "集成验证",
         "body": "带着失败证据重新组织问题，形成下一轮可验证判断。"
+      },
+      {
+        "step": "ITERATE",
+        "title": "上线迭代",
+        "body": "-"
       }
     ]
   },
