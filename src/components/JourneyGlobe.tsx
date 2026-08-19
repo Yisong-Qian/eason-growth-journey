@@ -3,23 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { contentAssetUrl } from "../content/assets";
-import globeContent from "../content/globe.json";
+import { globeContent, type GlobeStop, type GlobeTravelPoint } from "../content/locationAlbums";
 
-type Stop = {
-  city: string;
-  english: string;
-  lat: number;
-  lon: number;
-};
-
-type TravelPoint = Stop & {
-  labelDx: number;
-  labelDy: number;
-  labelSide?: "left" | "right";
-};
-
-const STOPS: Stop[] = globeContent.stops;
-const TRAVEL_POINTS = globeContent.travelPoints as TravelPoint[];
+const STOPS: GlobeStop[] = globeContent.stops;
+const TRAVEL_POINTS: GlobeTravelPoint[] = globeContent.travelPoints;
 
 const GLOBE_RADIUS = 2.42;
 
@@ -78,11 +65,12 @@ function makeCloudTexture() {
   return texture;
 }
 
-export default function JourneyGlobe() {
+export default function JourneyGlobe({ onOpenAlbum }: { onOpenAlbum: (slug: string) => void }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const interactiveRef = useRef<HTMLDivElement>(null);
-  const labelRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const travelLabelRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const labelRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const travelLabelRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const labelInteractionRef = useRef(false);
   const focusHandlersRef = useRef<Array<() => void>>([]);
   const zoomHandlersRef = useRef<{ in: () => void; out: () => void }>({
     in: () => undefined,
@@ -482,6 +470,7 @@ export default function JourneyGlobe() {
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.target as HTMLElement).closest(".globe-label")) return;
       const amount = 0.09;
       if (event.key === "ArrowLeft") globe.rotation.y -= amount;
       else if (event.key === "ArrowRight") globe.rotation.y += amount;
@@ -530,7 +519,11 @@ export default function JourneyGlobe() {
         if (globe.quaternion.angleTo(targetQuaternion) < 0.008) {
           hasTarget = false;
         }
-      } else if (!pointerDown && !prefersReducedMotion) {
+      } else if (
+        !pointerDown &&
+        !labelInteractionRef.current &&
+        !prefersReducedMotion
+      ) {
         globe.rotation.y += 0.00055;
         globe.rotation.y += velocity.x;
         globe.rotation.x += velocity.y;
@@ -574,6 +567,8 @@ export default function JourneyGlobe() {
         label.style.top = `${(-projected.y * 0.5 + 0.5) * mount.clientHeight}px`;
         label.style.opacity = isFrontFacing ? "1" : "0";
         label.style.pointerEvents = isFrontFacing ? "auto" : "none";
+        label.tabIndex = isFrontFacing ? 0 : -1;
+        label.setAttribute("aria-hidden", isFrontFacing ? "false" : "true");
       });
 
       travelVectors.forEach((position, index) => {
@@ -594,6 +589,9 @@ export default function JourneyGlobe() {
           (-projected.y * 0.5 + 0.5) * mount.clientHeight + point.labelDy
         }px`;
         label.style.opacity = isFrontFacing ? "1" : "0";
+        label.style.pointerEvents = isFrontFacing ? "auto" : "none";
+        label.tabIndex = isFrontFacing ? 0 : -1;
+        label.setAttribute("aria-hidden", isFrontFacing ? "false" : "true");
       });
 
       renderer.render(scene, camera);
@@ -664,7 +662,7 @@ export default function JourneyGlobe() {
       <div
         className={`journey-globe${textureReady ? " is-ready" : ""}`}
         ref={interactiveRef}
-        role="img"
+        role="region"
         aria-label={globeContent.accessibilityLabel}
         tabIndex={0}
       >
@@ -680,11 +678,27 @@ export default function JourneyGlobe() {
         </div>
         <div className="journey-globe-canvas-host" ref={mountRef} />
         <div className="globe-scanline" aria-hidden="true" />
-        <div className="globe-labels" aria-hidden="true">
+        <div className="globe-labels" aria-label="可浏览相册的地点">
           {STOPS.map((stop, index) => (
-            <span
+            <button
               className={`globe-label${activeStop === index ? " is-active" : ""}`}
               key={stop.city}
+              type="button"
+              tabIndex={-1}
+              aria-label={`打开${stop.city}相册`}
+              onClick={() => onOpenAlbum(stop.slug)}
+              onPointerEnter={() => {
+                labelInteractionRef.current = true;
+              }}
+              onPointerLeave={() => {
+                labelInteractionRef.current = false;
+              }}
+              onFocus={() => {
+                labelInteractionRef.current = true;
+              }}
+              onBlur={() => {
+                labelInteractionRef.current = false;
+              }}
               ref={(element) => {
                 labelRefs.current[index] = element;
               }}
@@ -692,12 +706,28 @@ export default function JourneyGlobe() {
               <i />
               <strong>{stop.city}</strong>
               <small>{stop.english}</small>
-            </span>
+            </button>
           ))}
           {TRAVEL_POINTS.map((point, index) => (
-            <span
+            <button
               className={`globe-label globe-label--travel${point.labelSide === "left" ? " is-left" : ""}`}
               key={point.city}
+              type="button"
+              tabIndex={-1}
+              aria-label={`打开${point.city}相册`}
+              onClick={() => onOpenAlbum(point.slug)}
+              onPointerEnter={() => {
+                labelInteractionRef.current = true;
+              }}
+              onPointerLeave={() => {
+                labelInteractionRef.current = false;
+              }}
+              onFocus={() => {
+                labelInteractionRef.current = true;
+              }}
+              onBlur={() => {
+                labelInteractionRef.current = false;
+              }}
               ref={(element) => {
                 travelLabelRefs.current[index] = element;
               }}
@@ -705,7 +735,7 @@ export default function JourneyGlobe() {
               <i />
               <strong>{point.city}</strong>
               <small>{point.english}</small>
-            </span>
+            </button>
           ))}
         </div>
       </div>

@@ -1,7 +1,9 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import JourneyGlobeLoader from "./components/JourneyGlobeLoader";
+import LocationAlbum from "./components/LocationAlbum";
 import { contentAssetUrl } from "./content/assets";
 import journeyContent from "./content/journey.json";
+import { findAlbumLocation } from "./content/locationAlbums";
 import projectsContent from "./content/projects.json";
 import researchContent from "./content/research.json";
 import siteContent from "./content/site.json";
@@ -12,6 +14,11 @@ type ProjectItem = (typeof projectsContent.items)[number] & {
 };
 
 const projectItems: ProjectItem[] = projectsContent.items;
+
+function currentAlbumSlug() {
+  const parameters = new URLSearchParams(window.location.search);
+  return parameters.has("album") ? parameters.get("album") ?? "" : null;
+}
 
 function Lines({ lines }: { lines: string[] }) {
   return lines.map((line, index) => (
@@ -31,13 +38,7 @@ function SeparatedList({ items, separator }: { items: string[]; separator: strin
   ));
 }
 
-export default function Home() {
-  useEffect(() => {
-    document.title = siteContent.meta.title;
-    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    description?.setAttribute("content", siteContent.meta.description);
-  }, []);
-
+function Home({ onOpenAlbum }: { onOpenAlbum: (slug: string) => void }) {
   return (
     <main>
       <section className="hero" id="home" aria-labelledby="hero-title">
@@ -85,7 +86,7 @@ export default function Home() {
           </div>
         </div>
 
-        <JourneyGlobeLoader />
+        <JourneyGlobeLoader onOpenAlbum={onOpenAlbum} />
 
         <blockquote className="hero-quote">
           <span className="quote-mark" aria-hidden="true">“</span>
@@ -216,4 +217,71 @@ export default function Home() {
       </footer>
     </main>
   );
+}
+
+export default function App() {
+  const [albumSlug, setAlbumSlug] = useState<string | null>(() => currentAlbumSlug());
+  const returnScrollRef = useRef(0);
+  const albumLocation = findAlbumLocation(albumSlug);
+
+  useEffect(() => {
+    const onPopState = () => {
+      const nextSlug = currentAlbumSlug();
+      setAlbumSlug(nextSlug);
+      if (nextSlug === null) {
+        window.requestAnimationFrame(() => window.scrollTo({ top: returnScrollRef.current }));
+      } else {
+        window.scrollTo({ top: 0 });
+      }
+    };
+
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (albumSlug !== null) {
+      document.title = albumLocation
+        ? `${albumLocation.city}相册｜${siteContent.brand}`
+        : `相册不存在｜${siteContent.brand}`;
+      description?.setAttribute(
+        "content",
+        albumLocation?.albumDescription?.trim() || `${albumLocation?.city || "地点"}的旅行与生活相册。`,
+      );
+    } else {
+      document.title = siteContent.meta.title;
+      description?.setAttribute("content", siteContent.meta.description);
+    }
+  }, [albumLocation, albumSlug]);
+
+  const openAlbum = (slug: string) => {
+    returnScrollRef.current = window.scrollY;
+    const url = new URL(window.location.href);
+    url.searchParams.set("album", slug);
+    url.hash = "";
+    window.history.pushState({ albumFromGlobe: true }, "", url);
+    setAlbumSlug(slug);
+    window.scrollTo({ top: 0 });
+  };
+
+  const closeAlbum = () => {
+    if (window.history.state?.albumFromGlobe) {
+      window.history.back();
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("album");
+    url.hash = "home";
+    window.history.replaceState(null, "", url);
+    setAlbumSlug(null);
+    window.scrollTo({ top: 0 });
+  };
+
+  if (albumSlug !== null) {
+    return <LocationAlbum location={albumLocation} onBack={closeAlbum} />;
+  }
+
+  return <Home onOpenAlbum={openAlbum} />;
 }

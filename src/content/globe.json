@@ -1,21 +1,21 @@
 {
   "earthTexture": "/earth-color.webp",
   "previewImage": "/earth-preview.webp",
-  "accessibilityLabel": "可交互的真实三维地球，显示从杭州到汉诺威再到慕尼黑的人生轨迹，以及独立旅途坐标。可拖拽旋转，也可缩放和使用键盘操作。",
+  "accessibilityLabel": "可交互的真实三维地球，显示从杭州到汉诺威再到慕尼黑的人生轨迹，以及独立旅途坐标。可拖拽旋转、缩放或使用键盘操作，点击地点可打开对应相册。",
   "fallbackMessage": "当前浏览器暂以轻量地球显示",
   "loadingMessage": "正在启用交互地球",
   "controlEyebrow": "TRAJECTORY / TRAVEL POINTS",
   "controlCaption": "主轨迹 · 独立旅途坐标",
   "stops": [
-    { "city": "杭州", "english": "HANGZHOU", "lat": 30.2741, "lon": 120.1551 },
-    { "city": "汉诺威", "english": "HANNOVER", "lat": 52.3759, "lon": 9.732 },
-    { "city": "慕尼黑", "english": "MUNICH", "lat": 48.1351, "lon": 11.582 }
+    { "city": "杭州", "english": "HANGZHOU", "slug": "hangzhou", "lat": 30.2741, "lon": 120.1551, "albumDescription": "", "photos": [] },
+    { "city": "汉诺威", "english": "HANNOVER", "slug": "hannover", "lat": 52.3759, "lon": 9.732, "albumDescription": "", "photos": [] },
+    { "city": "慕尼黑", "english": "MUNICH", "slug": "munich", "lat": 48.1351, "lon": 11.582, "albumDescription": "", "photos": [] }
   ],
   "travelPoints": [
-    { "city": "冰岛", "english": "ICELAND", "lat": 64.9631, "lon": -19.0208, "labelDx": 10, "labelDy": -10 },
-    { "city": "巴塞罗那", "english": "BARCELONA", "lat": 41.3874, "lon": 2.1686, "labelDx": -12, "labelDy": 0, "labelSide": "left" },
-    { "city": "南法", "english": "SOUTH FRANCE", "lat": 43.7102, "lon": 7.262, "labelDx": 12, "labelDy": -23 },
-    { "city": "特内里费", "english": "TENERIFE", "lat": 28.2916, "lon": -16.6291, "labelDx": 12, "labelDy": 7 },
-    { "city": "马略卡", "english": "MALLORCA", "lat": 39.6953, "lon": 3.0176, "labelDx": 13, "labelDy": 25 }
+    { "city": "冰岛", "english": "ICELAND", "slug": "iceland", "lat": 64.9631, "lon": -19.0208, "labelDx": 10, "labelDy": -10, "albumDescription": "", "photos": [] },
+    { "city": "巴塞罗那", "english": "BARCELONA", "slug": "barcelona", "lat": 41.3874, "lon": 2.1686, "labelDx": -12, "labelDy": 0, "labelSide": "left", "albumDescription": "", "photos": [] },
+    { "city": "南法", "english": "SOUTH FRANCE", "slug": "south-france", "lat": 43.7102, "lon": 7.262, "labelDx": 12, "labelDy": -23, "albumDescription": "", "photos": [] },
+    { "city": "特内里费", "english": "TENERIFE", "slug": "tenerife", "lat": 28.2916, "lon": -16.6291, "labelDx": 12, "labelDy": 7, "albumDescription": "", "photos": [] },
+    { "city": "马略卡", "english": "MALLORCA", "slug": "mallorca", "lat": 39.6953, "lon": 3.0176, "labelDx": 13, "labelDy": 25, "albumDescription": "", "photos": [] }
   ]
 }

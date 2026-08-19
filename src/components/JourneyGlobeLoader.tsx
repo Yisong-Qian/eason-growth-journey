@@ -2,7 +2,7 @@
 
 import { lazy, Suspense, useEffect, useState } from "react";
 import { contentAssetUrl } from "../content/assets";
-import globeContent from "../content/globe.json";
+import { globeContent } from "../content/locationAlbums";
 
 const JourneyGlobe = lazy(() => import("./JourneyGlobe"));
 
@@ -61,7 +61,7 @@ function GlobePlaceholder() {
   );
 }
 
-export default function JourneyGlobeLoader() {
+export default function JourneyGlobeLoader({ onOpenAlbum }: { onOpenAlbum: (slug: string) => void }) {
   const [activate, setActivate] = useState(false);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function JourneyGlobeLoader() {
 
   return (
     <Suspense fallback={<GlobePlaceholder />}>
-      <JourneyGlobe />
+      <JourneyGlobe onOpenAlbum={onOpenAlbum} />
     </Suspense>
   );
 }
