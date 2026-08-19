@@ -173,6 +173,7 @@ export default function Home() {
               <p>{method.body}</p>
             </article>
           ))}
+          <span className="method-loop" aria-hidden="true" />
         </div>
       </section>
 
