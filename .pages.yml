@@ -438,12 +438,14 @@ content:
                 label: 纬度
                 type: number
                 required: true
-                options: { min: -90, max: 90 }
+                description: 支持最多 6 位小数，范围为 -90 至 90。
+                options: { min: -90, max: 90, step: 0.000001 }
               - name: lon
                 label: 经度
                 type: number
                 required: true
-                options: { min: -180, max: 180 }
+                description: 支持最多 6 位小数，范围为 -180 至 180。
+                options: { min: -180, max: 180, step: 0.000001 }
               - name: albumDescription
                 label: 相册简介（可选）
                 type: text
@@ -498,12 +500,14 @@ content:
                 label: 纬度
                 type: number
                 required: true
-                options: { min: -90, max: 90 }
+                description: 支持最多 6 位小数，范围为 -90 至 90。
+                options: { min: -90, max: 90, step: 0.000001 }
               - name: lon
                 label: 经度
                 type: number
                 required: true
-                options: { min: -180, max: 180 }
+                description: 支持最多 6 位小数，范围为 -180 至 180。
+                options: { min: -180, max: 180, step: 0.000001 }
               - name: labelDx
                 label: 标签水平偏移
                 type: number
